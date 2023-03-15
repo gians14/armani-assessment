@@ -101,16 +101,33 @@ class EanStats:
                     .rename(columns={stat: typology + "_" + stat})
                 )
 
-        stat = "RATIO_PRICE" 
-        stats[stat] = pd.DataFrame({stat: round(df_for_stats[["EAN", "RATIO_PRICE"]].dropna()\
-                                            .groupby(["EAN"])["RATIO_PRICE"].mean(),2)})\
-                                            .reset_index()
-    
-        stat = "COUNTRY_RATIO_PRICE" 
-        stats[stat] = pd.DataFrame({stat: round(df_for_stats[["EAN", "COUNTRY", "RATIO_PRICE"]].dropna()\
-                                            .groupby(["EAN", "COUNTRY"], as_index=False)["RATIO_PRICE"].mean(),2)\
-                                            .groupby("EAN").apply(lambda x: dict(zip(x["COUNTRY"], x["RATIO_PRICE"])))})\
-                                            .reset_index()
+        stat = "RATIO_PRICE"
+        stats[stat] = pd.DataFrame(
+            {
+                stat: round(
+                    df_for_stats[["EAN", "RATIO_PRICE"]]
+                    .dropna()
+                    .groupby(["EAN"])["RATIO_PRICE"]
+                    .mean(),
+                    2,
+                )
+            }
+        ).reset_index()
+
+        stat = "COUNTRY_RATIO_PRICE"
+        stats[stat] = pd.DataFrame(
+            {
+                stat: round(
+                    df_for_stats[["EAN", "COUNTRY", "RATIO_PRICE"]]
+                    .dropna()
+                    .groupby(["EAN", "COUNTRY"], as_index=False)["RATIO_PRICE"]
+                    .mean(),
+                    2,
+                )
+                .groupby("EAN")
+                .apply(lambda x: dict(zip(x["COUNTRY"], x["RATIO_PRICE"])))
+            }
+        ).reset_index()
 
         return (
             stats["SOLD_QUANTITY"]

@@ -47,7 +47,7 @@ def lt_ratio_price(th):
     try:
         client = get_db()
         result = client.db_armani.ean_coll.find(
-            {"RATIO_PRICE" : {"$lt": float(th)}},
+            {"RATIO_PRICE": {"$lt": float(th)}},
             {
                 "EAN": True,
                 "RATIO_PRICE": True,

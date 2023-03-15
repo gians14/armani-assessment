@@ -78,6 +78,3 @@ python3 stats_generator/app.py
 ## Authors
 
 - [@gians14](https://github.com/gians14/)
-
-
-
