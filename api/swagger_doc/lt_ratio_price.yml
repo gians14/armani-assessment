@@ -1,0 +1,18 @@
+openapi: 3.0.0
+tags:
+  - name: Armani Stats
+summary: Returns EANs sold on average under a threshold
+parameters:
+  - in: path
+    name: th
+    schema:
+      type: string
+    required: true
+    description: Threshold
+responses:
+    '200':
+      description: Successful response
+    '400':
+      description: Bad Request
+    '500':
+      description: Internal Server Error

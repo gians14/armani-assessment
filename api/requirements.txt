@@ -1,3 +1,4 @@
 Flask==2.2.3
 pymongo==4.3.3
 Flask-RESTful>=0.3.8
+flasgger==0.9.5

@@ -5,6 +5,7 @@ services:
   mongo:
     image: mongo
     restart: always
+    hostname: test_mongodb
     ports:
         - 27017:27017
     environment:
@@ -22,3 +23,10 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+
+  api-app:
+    build: ./api/.
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo

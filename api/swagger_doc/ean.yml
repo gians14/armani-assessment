@@ -1,0 +1,18 @@
+openapi: 3.0.0
+tags:
+  - name: Armani Stats
+summary: Returns Stats of specific EAN.
+parameters:
+        - in: path
+          name: ean
+          schema:
+            type: string
+          required: true
+          description: European Article Number
+responses:
+    '200':
+      description: Successful response
+    '400':
+      description: Bad Request
+    '500':
+      description: Internal Server Error
